@@ -16,14 +16,14 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     dplyr,
-    ggplot2,
+    glue,
     httr2,
-    plotly,
+    lubridate,
     purrr,
-    readr,
+    rlang,
     rvest,
     stringr,
-    xml2
+    tibble
 VignetteBuilder: knitr
 Depends: 
     R (>= 3.5)
