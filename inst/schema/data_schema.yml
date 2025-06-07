@@ -1,0 +1,51 @@
+---
+
+title: "NCAA Baseball Data Model"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: rmarkdown::html\_vignette
+vignette: >
+%\VignetteIndexEntry{NCAA Baseball Data Model}
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteEncoding{UTF-8}
+-------------------------
+
+# Overview
+
+This vignette documents the database schema and scraping pipeline design for the `ncaaBaseball` package. It defines the core data tables, their relationships, and the order in which scraping functions should be executed.
+
+# Data Model
+
+The following YAML schema defines all tables used in the package and their respective fields:
+
+```yaml
+`r readLines(system.file("schema/data_schema.yml", package = "ncaaBaseball")) %>% paste(collapse = "\n")`
+```
+
+# Scraping Sequence
+
+1. **Team Dropdown Page** (`/teams/history`)
+   Collects `org_id` and `school_name`.
+
+2. **Team History Page** (`/teams/history?org_id=...`)
+   Collects `season_id` and metadata per year.
+
+3. **Team-Season Page** (`/teams/{season_id}`)
+   Links to:
+
+   * Schedule
+   * Roster
+   * Team Statistics
+   * Game-by-Game logs
+
+4. **Box Scores** (`/contests/{game_id}/box_score`)
+   For detailed per-game data.
+
+# Notes
+
+* Sport code is fixed as `MBA`.
+* Data may require validation due to inconsistent table formatting.
+* `player_id` and `game_id` may be inferred from URLs or links in the HTML.
+
+# End
+
