@@ -2,6 +2,9 @@
 #'
 #' Scrapes the org_id and school name for all institutions sponsoring baseball.
 #'
+#' @importFrom stats runif
+#' @importFrom rlang .data
+#'
 #' @return A tibble with columns `org_id` and `school_name`
 #' @export
 get_ncaa_baseball_teams <- function() {
@@ -24,5 +27,5 @@ get_ncaa_baseball_teams <- function() {
     org_id = dropdown |> rvest::html_attr("value") |> as.integer(),
     school_name = dropdown |> rvest::html_text(trim = TRUE)
   ) |>
-    dplyr::filter(!is.na(org_id))
+    dplyr::filter(!is.na(.data$org_id))
 }

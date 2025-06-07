@@ -3,6 +3,8 @@
 #' Scrapes all available seasons for a given team/org_id
 #' from the team history page.
 #'
+#' @importFrom rlang .data
+#'
 #' @param org_id Integer NCAA org ID (e.g., 694 for Tennessee)
 #' @param sport_code Character sport code, default is "MBA" (Baseball)
 #' @return A tibble with one row per season and columns:
@@ -15,11 +17,12 @@
 #'   - wins, losses, ties
 #'   - wl_pct
 #'   - notes
+#'
 #' @export
 get_team_seasons <- function(org_id, sport_code = "MBA") {
   base_url <- "https://stats.ncaa.org/teams/history"
   query <- list(
-    utf8 = "✓",
+    utf8 = "\u2713",
     org_id = org_id,
     sport_code = sport_code,
     commit = "Search"
@@ -55,5 +58,5 @@ get_team_seasons <- function(org_id, sport_code = "MBA") {
       notes = cols[[9]] |> rvest::html_text(trim = TRUE)
     )
   }) |>
-    dplyr::filter(!is.na(season_id))
+    dplyr::filter(!is.na(.data$season_id))
 }
