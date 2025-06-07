@@ -25,3 +25,6 @@ Imports:
     stringr,
     xml2
 VignetteBuilder: knitr
+Depends: 
+    R (>= 3.5)
+LazyData: true
