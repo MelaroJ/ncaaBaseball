@@ -1,0 +1,16 @@
+.Rproj.user
+.Rhistory
+.RData
+.Rdata
+.httr-oauth
+.DS_Store
+.quarto
+*.Rproj
+.Rproj.user/
+.Rbuildignore
+
+data-raw/
+
+renv/library/
+renv/staging/
+
