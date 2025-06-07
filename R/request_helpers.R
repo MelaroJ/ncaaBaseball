@@ -14,9 +14,14 @@ ncaa_request <- function(url) {
   # Add req_retry() or req_cache() here if needed later
 }
 
+
+
 #' Throttled Request with Retry
 #'
 #' Logs, delays, and retries NCAA requests safely.
+#'
+#' @importFrom glue glue
+#' @importFrom stats runif
 #'
 #' @param req httr2 request
 #' @param min_delay minimum seconds between requests
@@ -24,6 +29,8 @@ ncaa_request <- function(url) {
 #' @param max_retries how many times to retry after failure
 #' @param verbose logical; whether to print logs
 #' @return httr2 response object
+#'
+#'
 #' @noRd
 perform_throttled <- function(req, min_delay = 0.5, max_delay = 1.5, max_retries = 3, verbose = TRUE) {
   delay <- runif(1, min_delay, max_delay)
