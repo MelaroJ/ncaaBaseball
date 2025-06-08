@@ -2,6 +2,8 @@
 #'
 #' Scrapes the roster table for a given team-season.
 #'
+#' @importFrom utils tail
+#'
 #' @param season_id Integer season ID
 #' @return A tibble with one row per player and columns:
 #'   - number, name, player_url, class, position, height, bats, throws, hometown, highschool
